@@ -12,10 +12,9 @@ terraform {
 provider "azurerm" {
   features {}
 
-  # Option 2 is active: Service Principal authentication via variables.
-  tenant_id       = var.tenant_id
-  subscription_id = var.subscription_id
-  client_id       = var.client_id
-  client_secret   = var.client_secret
-  
+  # Option 2 is active: Service Principal authentication via locals in main.tf.
+  tenant_id       = local.tenant_id
+  subscription_id = local.subscription_id
+  client_id       = local.client_id
+  client_secret   = local.client_secret
 }
