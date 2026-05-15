@@ -41,16 +41,18 @@ locals {
   }
 
   # ----------------------------------------
-  # Backend Pools and Settings
+  # ✅ UPDATED: Backend Pools (FQDN instead of IP)
   # ----------------------------------------
   backend_address_pools = [
     {
-      name         = "pool-app1"
-      ip_addresses = ["10.0.3.4"]
-      fqdns        = []
+      name  = "pool-app1"
+      fqdns = ["LOUSQLWTS4527.humad.com"]
     }
   ]
 
+  # ----------------------------------------
+  # ✅ UPDATED: Backend HTTP Settings (hostname updated)
+  # ----------------------------------------
   backend_http_settings = [
     {
       name                           = "bhs-app1-https"
@@ -59,7 +61,7 @@ locals {
       request_timeout                = 30
       cookie_based_affinity          = false
       affinity_cookie_name           = ""
-      host_name                      = "app1.internal.contoso.local"
+      host_name                      = "LOUSQLWTS4527.humad.com"   # ✅ changed
       pick_host_name_from_backend    = false
       path                           = "/"
       trusted_root_certificate_names = []
@@ -85,7 +87,7 @@ locals {
   backend_http_listeners = [
     {
       name                       = "listener-app1"
-      host_name                  = "app1.contoso.com"
+      host_name                  = "app1.contoso.com"   # ✅ unchanged (correct)
       host_names                 = null
       ssl_certificate_name       = "cert-app1"
       require_sni                = false
