@@ -68,6 +68,23 @@ resource "azapi_resource" "appgw" {
         }
       ]
 
+      # ✅ ADDED BLOCK (from your ip pool)
+      backendAddressPools = [
+        {
+          name = "backend-pool"
+          properties = {
+            backendAddresses = [
+              {
+                ipAddress = "10.10.2.4"
+              },
+              {
+                ipAddress = "10.10.2.5"
+              }
+            ]
+          }
+        }
+      ]
+
       backendSettingsCollection = [
         {
           name = "tcp-settings"
